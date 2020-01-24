@@ -6,6 +6,8 @@ resource "template_dir" "cloudinit" {
   vars = {
     ipv4_address = lookup(var.device_list[count.index], "ipv4_address", "dhcp")
     ipv4_gateway = lookup(var.device_list[count.index], "ipv4_gateway", "")
+    vpn512_address = lookup(var.device_list[count.index], "vpn512_address", "dhcp")
+    vpn512_gateway = lookup(var.device_list[count.index], "vpn512_gateway", "")  
   }
 }
 

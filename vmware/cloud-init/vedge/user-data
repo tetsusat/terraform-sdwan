@@ -30,9 +30,16 @@ vpn 0
  !
 !
 vpn 512
+ %{ if vpn512_gateway != ""}
+ ip route 0.0.0.0/0 ${vpn512_gateway}
+ %{ endif }
+
  interface eth0
+  %{ if vpn512_address != "dhcp" }
+  ip address ${vpn512_address}
+  %{ else }
   ip dhcp-client
-  shutdown
+  %{ endif }  no shutdown
  !
 !
 --==BOUNDARY==
