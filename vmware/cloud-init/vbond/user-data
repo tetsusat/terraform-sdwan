@@ -12,27 +12,24 @@ viptela-system:system
    password admin
 !
 vpn 0
+ interface ge0/0
+  ip dhcp-client
+  shutdown
+ !
+!
+vpn 512
  %{ if ipv4_gateway != ""}
  ip route 0.0.0.0/0 ${ipv4_gateway}
  %{ endif }
 
- interface ge0/0
+ interface eth0
   %{ if ipv4_address != "dhcp" }
   ip address ${ipv4_address}
   %{ else }
   ip dhcp-client
   %{ endif }
-
-  tunnel-interface
-   allow-service all
   !
   no shutdown
- !
-!
-vpn 512
- interface eth0
-  ip dhcp-client
-  shutdown
  !
 !
 --==BOUNDARY==

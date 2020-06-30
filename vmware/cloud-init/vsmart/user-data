@@ -12,27 +12,24 @@ system
    password admin
 !
 vpn 0
+ interface eth0
+  ip dhcp-client
+  shutdown
+ !
+!
+vpn 512
  %{ if ipv4_gateway != ""}
  ip route 0.0.0.0/0 ${ipv4_gateway}
  %{ endif }
 
- interface eth0
+ interface eth1
   %{ if ipv4_address != "dhcp" }
   ip address ${ipv4_address}
   %{ else }
   ip dhcp-client
   %{ endif }
-
-  tunnel-interface
-   allow-service all
   !
   no shutdown
- !
-!
-vpn 512
- interface eth1
-  ip dhcp-client
-  shutdown
  !
 !
 --==BOUNDARY==

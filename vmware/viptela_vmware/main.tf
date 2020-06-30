@@ -70,6 +70,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   ignored_guest_ips = ["127.1.0.1"]
   wait_for_guest_net_routable = false
+  wait_for_guest_net_timeout = 0
 
   disk {
     label            = "disk0"
